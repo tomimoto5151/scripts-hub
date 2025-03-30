@@ -360,8 +360,9 @@ function saveScriptsToStorage() {
     const dataBlob = new Blob([dataStr], { type: 'application/json' });
     const dataUrl = URL.createObjectURL(dataBlob);
     
-    // ダウンロードリンクを作成して自動的にクリック
+    // ダウンロードリンクを作成
     const downloadArea = document.createElement('div');
+    downloadArea.className = 'download-json-container';
     downloadArea.innerHTML = `
         <div class="download-json-notification">
             <p>データが更新されました。以下のリンクからJSONファイルをダウンロードして、「data/scripts.json」として保存し、GitHubにアップロードしてください。</p>
@@ -370,13 +371,27 @@ function saveScriptsToStorage() {
     `;
     
     // 既存の通知があれば削除
-    const existingNotification = document.querySelector('.download-json-notification');
+    const existingNotification = document.querySelector('.download-json-container');
     if (existingNotification) {
         existingNotification.parentNode.removeChild(existingNotification);
     }
     
-    // 通知を追加
-    document.querySelector('.admin-section').appendChild(downloadArea);
+    // 通知を追加（既存のスクリプトセクションの後に追加）
+    const existingScriptsSection = document.getElementById('existing-scripts');
+    if (existingScriptsSection) {
+        existingScriptsSection.parentNode.appendChild(downloadArea);
+    } else {
+        // 既存のスクリプトセクションが見つからない場合は、admin-contentに追加
+        const adminContent = document.getElementById('admin-content');
+        if (adminContent) {
+            adminContent.appendChild(downloadArea);
+        } else {
+            // それも見つからない場合はbodyに追加
+            document.body.appendChild(downloadArea);
+        }
+    }
+    
+    console.log('データが更新され、JSONファイルのダウンロードリンクが表示されました');
 }
 
 // データを読み込む関数

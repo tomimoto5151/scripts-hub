@@ -112,6 +112,10 @@
 }
 
 /* JSONダウンロード通知 */
+.download-json-container {
+    margin: 20px 0;
+}
+
 .download-json-notification {
     margin-top: 20px;
     padding: 15px;
@@ -119,6 +123,12 @@
     border: 1px solid var(--accent-green);
     border-radius: 5px;
     color: white;
+    animation: highlight-notification 1s ease-in-out;
+}
+
+@keyframes highlight-notification {
+    0% { background-color: var(--accent-green); }
+    100% { background-color: #333; }
 }
 
 .download-json-notification p {
