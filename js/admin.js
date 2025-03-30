@@ -428,7 +428,7 @@ function loadScriptsFromStorage() {
     }
     
     // ローカルストレージにデータがない場合は、JSONファイルから読み込む
-    fetch('data/scripts.json')
+    fetch('data/scripts.json?' + new Date().getTime())
         .then(response => {
             if (!response.ok) {
                 throw new Error('JSONファイルの読み込みに失敗しました');
