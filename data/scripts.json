@@ -1,50 +1,62 @@
 [
   {
-    "id": "script1",
-    "title": "ファイル整理ツール",
-    "description": "指定したフォルダ内のファイルを種類ごとに自動で整理するスクリプトです。",
-    "thumbnail": "img/thumbnails/file-organizer.jpg",
+    "id": "transform-panel",
+    "title": "Transform Panel",
+    "description": "位置、回転、スケール、寸法を正確に調整するための3D制作アプリスタイルの変形コントロールを提供するPhotoshop用のツールです。",
+    "thumbnail": "img/thumbnails/tm-transform-panel.jpg",
     "images": [
-      "img/screenshots/file-organizer-1.jpg",
-      "img/screenshots/file-organizer-2.jpg"
+      "img/screenshots/tm-transform-panel.jpg",
+      "img/screenshots/tm-transform-panel.jpg"
     ],
-    "fullDescription": "このスクリプトは、指定したフォルダ内のファイルを拡張子ごとに自動で分類し、整理します。画像、ドキュメント、音楽、動画などのカテゴリごとにサブフォルダを作成し、対応するファイルを移動させます。バッチ処理にも対応しており、大量のファイルも効率的に整理できます。",
-    "githubUrl": "https://github.com/username/file-organizer",
+    "fullDescription": "📐 3D アーティストに馴染みのある完全な変換コントロール (移動、回転、拡大縮小、寸法の調整)\n🔒 繰り返し実行のために以前の値をロックする\n👥 複数のオブジェクトに同時に変換を適用する\n📏 ボーナス機能: 参照座標でレイヤーを整理する\n🇯🇵 日本語のみのサポート",
+    "githubUrl": "https://github.com/tomimoto5151/transform-panel",
     "targetApps": [
-      "photoshop",
+      "photoshop"
+    ]
+  },
+  {
+    "id": "ps-script-launcher",
+    "title": "PS Script Launcher",
+    "description": "同じディレクトリ内の「scripts」フォルダからスクリプトを一覧表示して実行する、Photoshop 用のシンプルなスクリプト ランチャーです。",
+    "thumbnail": "img/thumbnails/2.png",
+    "images": [
+      "img/screenshots/6.png",
+      "img/screenshots/2.png"
+    ],
+    "fullDescription": "📋 「scripts」フォルダ内のすべてのスクリプトを一覧表示します\n▶️ ワンクリックでスクリプトを実行\n📁 「scripts」フォルダが存在しない場合は自動的に作成します\n🔄 シンプルでクリーンなユーザーインターフェース",
+    "githubUrl": "https://github.com/tomimoto5151/ps-script-launcher",
+    "targetApps": [
+      "photoshop"
+    ]
+  },
+  {
+    "id": "image-to-artboard-generator",
+    "title": "Image to Artboard Generator",
+    "description": "複数の画像をアートボードとして自動的に配置し、元の画像のサイズを維持して効率的なレイアウトを実現するプロフェッショナルな Photoshop ツールです。",
+    "thumbnail": "img/thumbnails/2.png",
+    "images": [
+      "img/screenshots/6.png",
+      "img/screenshots/2.png"
+    ],
+    "fullDescription": "複数の画像をアートボードとして自動的に配置し、元の画像のサイズを維持して効率的なレイアウトを実現するプロフェッショナルな Photoshop ツールです。\n📐 複数の画像を一度にインポートする\n🔄 オリジナルの画像サイズでアートボードを作成する\n🏷️ レイヤー名は画像ファイル名から継承されます\n📝 アートボード名は画像のファイル名と拡張子を保持します\n📊 10000pxで縦に並べた画像を折り返します",
+    "githubUrl": "https://github.com/tomimoto5151/image-to-artboard-generator",
+    "targetApps": [
+      "photoshop"
+    ]
+  },
+  {
+    "id": "middle-button-drag-scroll",
+    "title": "Middle Button Drag Scroll",
+    "description": "Mac 版 Chrome に中央ボタンのドラッグスクロール機能を追加します。直感的なスクロールコントロールでブラウジング体験が向上します。",
+    "thumbnail": "img/thumbnails/2.png",
+    "images": [
+      "img/screenshots/6.png",
+      "img/screenshots/2.png"
+    ],
+    "fullDescription": "🖱️ 中ボタンドラッグスクロール\n🔧 スクロール速度調整\n🔁 スクロール方向の反転",
+    "githubUrl": "https://github.com/tomimoto5151/middle-button-drag-scroll",
+    "targetApps": [
       "chrome"
-    ]
-  },
-  {
-    "id": "script2",
-    "title": "画像一括リサイズツール",
-    "description": "複数の画像を一度に指定したサイズにリサイズするスクリプトです。",
-    "thumbnail": "img/thumbnails/image-resizer.jpg",
-    "images": [
-      "img/screenshots/image-resizer-1.jpg",
-      "img/screenshots/image-resizer-2.jpg"
-    ],
-    "fullDescription": "このツールを使用すると、フォルダ内の複数の画像を一括でリサイズすることができます。幅と高さを指定するか、比率を維持したままスケーリングするかを選択できます。また、出力形式やクオリティの設定も可能です。ウェブサイト用の画像の準備や、SNSへの投稿用画像の作成に最適です。",
-    "githubUrl": "https://github.com/username/image-resizer",
-    "targetApps": [
-      "photoshop",
-      "blender"
-    ]
-  },
-  {
-    "id": "script3",
-    "title": "PDFマージツール",
-    "description": "複数のPDFファイルを1つのファイルに結合するシンプルなツールです。",
-    "thumbnail": "img/thumbnails/pdf-merger.jpg",
-    "images": [
-      "img/screenshots/pdf-merger-1.jpg",
-      "img/screenshots/pdf-merger-2.jpg"
-    ],
-    "fullDescription": "このスクリプトを使用すると、複数のPDFファイルを1つのドキュメントに簡単に結合することができます。ドラッグ＆ドロップインターフェースで使いやすく、ファイルの順序を自由に並べ替えることも可能です。パスワード保護されたPDFにも対応しており、結合後のファイルにもパスワード設定ができます。",
-    "githubUrl": "https://github.com/username/pdf-merger",
-    "targetApps": [
-      "chrome",
-      "figma"
     ]
   }
 ]
