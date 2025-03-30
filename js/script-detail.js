@@ -61,9 +61,11 @@ function displayScriptDetail(scriptId) {
         // 画像ギャラリーを生成
         createImageGallery(script.images);
         
-        // 説明文を設定
+        // 説明文を設定（改行を<br>タグに変換して表示）
         const descriptionElement = document.getElementById('script-description');
-        descriptionElement.innerHTML = `<p>${script.fullDescription}</p>`;
+        // 改行をHTMLの<br>タグに変換
+        const formattedDescription = script.fullDescription.replace(/\n/g, '<br>');
+        descriptionElement.innerHTML = `<p>${formattedDescription}</p>`;
         
         // GitHubリポジトリへのリンクを設定
         const githubLink = document.getElementById('github-repo-link');

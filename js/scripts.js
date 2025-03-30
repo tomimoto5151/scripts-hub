@@ -58,6 +58,9 @@ function createScriptCard(script) {
     const card = document.createElement('div');
     card.className = 'script-card';
     
+    // 説明文の改行を<br>タグに変換
+    const formattedDescription = script.description.replace(/\n/g, '<br>');
+    
     // カード内のHTMLを生成
     card.innerHTML = `
         <div class="script-card-img-container">
@@ -65,7 +68,7 @@ function createScriptCard(script) {
         </div>
         <div class="script-card-content">
             <h3 class="script-card-title">${script.title}</h3>
-            <p class="script-card-description">${script.description}</p>
+            <p class="script-card-description">${formattedDescription}</p>
             <a href="script.html?id=${script.id}" class="script-card-link">詳細を見る</a>
         </div>
     `;
