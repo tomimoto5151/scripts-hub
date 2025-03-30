@@ -422,6 +422,8 @@ function loadScriptsFromStorage() {
     const storedData = localStorage.getItem('scriptsData');
     if (storedData) {
         scriptsData = JSON.parse(storedData);
+        // 読み込んだデータを表示
+        displayExistingScripts();
         return;
     }
     
@@ -437,9 +439,11 @@ function loadScriptsFromStorage() {
             scriptsData = data;
             // 読み込んだデータを表示
             displayExistingScripts();
+            console.log('JSONファイルからデータを読み込みました:', data);
         })
         .catch(error => {
             console.error('データの読み込みエラー:', error);
             // エラーの場合はデフォルトデータを使用
+            displayExistingScripts();
         });
 }
