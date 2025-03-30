@@ -29,18 +29,64 @@ let scriptsData = [
     }
 ];
 
+// 管理者パスワード
+const ADMIN_PASSWORD = "nekosan";
+
 // ページ読み込み時に実行
 document.addEventListener('DOMContentLoaded', function() {
     // ローカルストレージからデータを読み込む
     loadScriptsFromStorage();
     
-    // 既存のスクリプトを表示
-    displayExistingScripts();
+    // ログインフォームのイベントリスナーを設定
+    const loginForm = document.getElementById('login-form');
+    loginForm.addEventListener('submit', handleLogin);
+    
+    // 既にログイン済みかチェック
+    checkLoginStatus();
     
     // フォーム送信イベントを設定
     const form = document.getElementById('add-script-form');
     form.addEventListener('submit', handleFormSubmit);
 });
+
+// ログイン状態をチェックする関数
+function checkLoginStatus() {
+    const isLoggedIn = sessionStorage.getItem('adminLoggedIn') === 'true';
+    
+    if (isLoggedIn) {
+        // ログイン済みの場合は管理画面を表示
+        document.getElementById('login-section').style.display = 'none';
+        document.getElementById('admin-content').style.display = 'block';
+        
+        // 既存のスクリプトを表示
+        displayExistingScripts();
+    }
+}
+
+// ログイン処理を行う関数
+function handleLogin(event) {
+    event.preventDefault();
+    
+    const passwordInput = document.getElementById('password');
+    const enteredPassword = passwordInput.value;
+    
+    if (enteredPassword === ADMIN_PASSWORD) {
+        // パスワードが正しい場合
+        sessionStorage.setItem('adminLoggedIn', 'true');
+        
+        // ログイン画面を非表示にし、管理画面を表示
+        document.getElementById('login-section').style.display = 'none';
+        document.getElementById('admin-content').style.display = 'block';
+        
+        // 既存のスクリプトを表示
+        displayExistingScripts();
+    } else {
+        // パスワードが間違っている場合
+        alert('パスワードが正しくありません。');
+        passwordInput.value = '';
+        passwordInput.focus();
+    }
+}
 
 // フォーム送信を処理する関数
 function handleFormSubmit(event) {
@@ -73,7 +119,7 @@ function handleFormSubmit(event) {
     addNewScript(newScript);
     
     // フォームをリセット
-    form.reset();
+    event.target.reset();
     
     // 成功メッセージを表示
     alert('スクリプトが正常に追加されました！');
