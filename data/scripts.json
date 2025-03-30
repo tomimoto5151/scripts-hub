@@ -18,10 +18,9 @@
     "id": "ps-script-launcher",
     "title": "PS Script Launcher",
     "description": "同じディレクトリ内の「scripts」フォルダからスクリプトを一覧表示して実行する、Photoshop 用のシンプルなスクリプト ランチャーです。",
-    "thumbnail": "img/thumbnails/2.png",
+    "thumbnail": "img/thumbnails/tm-script-launcher.jpg",
     "images": [
-      "img/screenshots/6.png",
-      "img/screenshots/2.png"
+      "img/screenshots/tm-script-launcher.jpg"
     ],
     "fullDescription": "📋 「scripts」フォルダ内のすべてのスクリプトを一覧表示します\n▶️ ワンクリックでスクリプトを実行\n📁 「scripts」フォルダが存在しない場合は自動的に作成します\n🔄 シンプルでクリーンなユーザーインターフェース",
     "githubUrl": "https://github.com/tomimoto5151/ps-script-launcher",
