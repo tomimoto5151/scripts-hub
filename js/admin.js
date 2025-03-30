@@ -43,22 +43,44 @@ const targetApps = [
 // 管理者パスワード
 const ADMIN_PASSWORD = "nekosan";
 
-// ページ読み込み時に実行
+// ページ読み込み時の処理
 document.addEventListener('DOMContentLoaded', function() {
-    // ローカルストレージからデータを読み込む
-    loadScriptsFromStorage();
-    
-    // ログインフォームのイベントリスナーを設定
-    const loginForm = document.getElementById('login-form');
-    loginForm.addEventListener('submit', handleLogin);
-    
-    // 既にログイン済みかチェック
+    // ログイン状態をチェック
     checkLoginStatus();
     
-    // フォーム送信イベントを設定
-    const form = document.getElementById('add-script-form');
-    form.addEventListener('submit', handleFormSubmit);
+    // ログインフォームのイベントリスナーを設定
+    document.getElementById('login-form').addEventListener('submit', handleLogin);
+    
+    // スクリプト追加フォームのイベントリスナーを設定
+    document.getElementById('add-script-form').addEventListener('submit', handleFormSubmit);
+    
+    // JSONダウンロードボタンのイベントリスナーを設定
+    const downloadJsonBtn = document.getElementById('download-json-btn');
+    if (downloadJsonBtn) {
+        downloadJsonBtn.addEventListener('click', downloadJsonFile);
+    }
+    
+    // ローカルストレージからデータを読み込む
+    loadScriptsFromStorage();
 });
+
+// JSONファイルをダウンロードする関数
+function downloadJsonFile() {
+    const dataStr = JSON.stringify(scriptsData, null, 2);
+    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+    const dataUrl = URL.createObjectURL(dataBlob);
+    
+    // ダウンロードリンクを作成して自動的にクリック
+    const downloadLink = document.createElement('a');
+    downloadLink.href = dataUrl;
+    downloadLink.download = 'scripts.json';
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+    
+    // 成功メッセージを表示
+    alert('JSONファイルがダウンロードされました。このファイルを「data/scripts.json」として保存し、GitHubにアップロードしてください。');
+}
 
 // ログイン状態をチェックする関数
 function checkLoginStatus() {

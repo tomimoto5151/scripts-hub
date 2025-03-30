@@ -7,132 +7,6 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        .script-item {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            margin-bottom: 10px;
-            background-color: #333333;
-            border-radius: 5px;
-            border: 1px solid #555;
-            color: white;
-        }
-        
-        .script-item-title {
-            flex-grow: 1;
-            font-weight: bold;
-            font-size: 16px;
-            color: white;
-        }
-        
-        .script-item-actions {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .order-actions {
-            display: flex;
-            gap: 5px;
-            margin-right: 15px;
-        }
-        
-        .order-btn {
-            background-color: #4a90e2;
-            color: white;
-            border: none;
-            border-radius: 3px;
-            padding: 6px 10px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-        }
-        
-        .order-btn:hover {
-            background-color: #3a7bc8;
-        }
-        
-        .order-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            background-color: #7a7a7a;
-        }
-        
-        .edit-btn {
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            border-radius: 3px;
-            padding: 6px 12px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        
-        .edit-btn:hover {
-            background-color: #3d8b40;
-        }
-        
-        .delete-btn {
-            background-color: #f44336;
-            color: white;
-            border: none;
-            border-radius: 3px;
-            padding: 6px 12px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        
-        .delete-btn:hover {
-            background-color: #d32f2f;
-        }
-        
-        .section-description {
-            margin-bottom: 20px;
-            color: #666;
-            font-size: 16px;
-        }
-        
-        .target-apps-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 10px;
-        }
-        
-        .app-checkbox {
-            display: flex;
-            align-items: center;
-            background-color: #444;
-            padding: 8px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        
-        .app-checkbox:hover {
-            background-color: #555;
-        }
-        
-        .app-checkbox input {
-            margin-right: 8px;
-        }
-        
-        .app-checkbox label {
-            color: white;
-            cursor: pointer;
-        }
-        
-        .target-app-icons {
-            display: flex;
-            gap: 8px;
-            margin-right: 15px;
-        }
-        
-        .app-icon {
-            width: 24px;
-            height: 24px;
-            border-radius: 4px;
-        }
-    </style>
 </head>
 <body>
     <header class="sub-header">
@@ -236,6 +110,13 @@
                     <p class="section-description">スクリプトの順番を変更するには、上下の矢印ボタンを使用してください。</p>
                     <div id="existing-scripts" class="existing-scripts">
                         <!-- 既存のスクリプトはJavaScriptで動的に生成されます -->
+                    </div>
+                    
+                    <!-- JSONファイルダウンロードセクション -->
+                    <div class="json-download-section">
+                        <h3>データのエクスポート</h3>
+                        <p>現在のスクリプトデータをJSONファイルとしてダウンロードできます。ダウンロードしたファイルを「data/scripts.json」として保存し、GitHubにアップロードすることで、すべてのデバイスで同じデータを共有できます。</p>
+                        <button id="download-json-btn" class="download-json-btn">JSONファイルをダウンロード</button>
                     </div>
                 </div>
             </section>
