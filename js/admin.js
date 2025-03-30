@@ -163,11 +163,23 @@ function displayExistingScripts() {
     }
     
     // 各スクリプトに対して項目を作成
-    scriptsData.forEach(script => {
+    scriptsData.forEach((script, index) => {
         const scriptItem = document.createElement('div');
         scriptItem.className = 'script-item';
         
+        // 上下ボタンの無効化状態を設定
+        const isFirst = index === 0;
+        const isLast = index === scriptsData.length - 1;
+        
         scriptItem.innerHTML = `
+            <div class="order-actions">
+                <button class="order-btn move-up" data-id="${script.id}" ${isFirst ? 'disabled' : ''}>
+                    <i class="fas fa-arrow-up"></i>
+                </button>
+                <button class="order-btn move-down" data-id="${script.id}" ${isLast ? 'disabled' : ''}>
+                    <i class="fas fa-arrow-down"></i>
+                </button>
+            </div>
             <div class="script-item-title">${script.title}</div>
             <div class="script-item-actions">
                 <button class="edit-btn" data-id="${script.id}"><i class="fas fa-edit"></i> 編集</button>
@@ -195,6 +207,58 @@ function displayExistingScripts() {
             deleteScript(scriptId);
         });
     });
+    
+    // 上に移動ボタンのイベントを設定
+    const moveUpButtons = document.querySelectorAll('.move-up');
+    moveUpButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const scriptId = this.getAttribute('data-id');
+            moveScriptUp(scriptId);
+        });
+    });
+    
+    // 下に移動ボタンのイベントを設定
+    const moveDownButtons = document.querySelectorAll('.move-down');
+    moveDownButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const scriptId = this.getAttribute('data-id');
+            moveScriptDown(scriptId);
+        });
+    });
+}
+
+// スクリプトを上に移動する関数
+function moveScriptUp(scriptId) {
+    const index = scriptsData.findIndex(script => script.id === scriptId);
+    
+    // 最初の要素は上に移動できない
+    if (index <= 0) return;
+    
+    // 要素を入れ替え
+    [scriptsData[index], scriptsData[index - 1]] = [scriptsData[index - 1], scriptsData[index]];
+    
+    // ローカルストレージに保存
+    saveScriptsToStorage();
+    
+    // 表示を更新
+    displayExistingScripts();
+}
+
+// スクリプトを下に移動する関数
+function moveScriptDown(scriptId) {
+    const index = scriptsData.findIndex(script => script.id === scriptId);
+    
+    // 最後の要素は下に移動できない
+    if (index >= scriptsData.length - 1) return;
+    
+    // 要素を入れ替え
+    [scriptsData[index], scriptsData[index + 1]] = [scriptsData[index + 1], scriptsData[index]];
+    
+    // ローカルストレージに保存
+    saveScriptsToStorage();
+    
+    // 表示を更新
+    displayExistingScripts();
 }
 
 // スクリプトを編集用にフォームに読み込む関数
@@ -202,19 +266,24 @@ function loadScriptForEditing(scriptId) {
     const script = scriptsData.find(s => s.id === scriptId);
     
     if (script) {
+        // フォームに値を設定
         document.getElementById('script-id').value = script.id;
         document.getElementById('script-title').value = script.title;
         document.getElementById('script-description').value = script.description;
         
-        // サムネイルのパスからプレフィックスを削除
-        const thumbnailValue = script.thumbnail.startsWith('img/thumbnails/') 
-            ? script.thumbnail.replace('img/thumbnails/', '') 
-            : script.thumbnail;
+        // サムネイル画像のパスから自動追加部分を削除
+        let thumbnailValue = script.thumbnail;
+        if (thumbnailValue.startsWith('img/thumbnails/')) {
+            thumbnailValue = thumbnailValue.replace('img/thumbnails/', '');
+        }
         document.getElementById('script-thumbnail').value = thumbnailValue;
         
-        // 画像パスからプレフィックスを削除
-        const imagesValue = script.images.map(img => {
-            return img.startsWith('img/screenshots/') ? img.replace('img/screenshots/', '') : img;
+        // 画像URLの配列から自動追加部分を削除してカンマ区切りの文字列に変換
+        const imagesValue = script.images.map(url => {
+            if (url.startsWith('img/screenshots/')) {
+                return url.replace('img/screenshots/', '');
+            }
+            return url;
         }).join(', ');
         document.getElementById('script-images').value = imagesValue;
         
@@ -228,18 +297,16 @@ function loadScriptForEditing(scriptId) {
 
 // スクリプトを削除する関数
 function deleteScript(scriptId) {
-    if (confirm('このスクリプトを削除してもよろしいですか？')) {
-        // スクリプトを配列から削除
+    // 削除確認
+    if (confirm(`「${scriptsData.find(s => s.id === scriptId).title}」を削除してもよろしいですか？`)) {
+        // 配列から削除
         scriptsData = scriptsData.filter(script => script.id !== scriptId);
         
         // ローカルストレージに保存
         saveScriptsToStorage();
         
-        // 既存のスクリプト一覧を更新
+        // 表示を更新
         displayExistingScripts();
-        
-        // 成功メッセージを表示
-        alert('スクリプトが正常に削除されました！');
     }
 }
 
