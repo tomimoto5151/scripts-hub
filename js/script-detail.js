@@ -6,7 +6,7 @@ let scriptsData = [
         title: "ファイル整理ツール",
         description: "指定したフォルダ内のファイルを種類ごとに自動で整理するスクリプトです。",
         thumbnail: "img/thumbnails/file-organizer.jpg",
-        images: ["img/screenshots/file-organizer-1.jpg", "img/screenshots/file-organizer-2.jpg"],
+        images: ["img/screenshots/2.png", "img/screenshots/6.png"],
         fullDescription: "このスクリプトは、指定したフォルダ内のファイルを拡張子ごとに自動で分類し、整理します。画像、ドキュメント、音楽、動画などのカテゴリごとにサブフォルダを作成し、対応するファイルを移動させます。バッチ処理にも対応しており、大量のファイルも効率的に整理できます。",
         githubUrl: "https://github.com/username/file-organizer"
     },
@@ -15,7 +15,7 @@ let scriptsData = [
         title: "画像一括リサイズツール",
         description: "複数の画像を一度に指定したサイズにリサイズするスクリプトです。",
         thumbnail: "img/thumbnails/image-resizer.jpg",
-        images: ["img/screenshots/image-resizer-1.jpg", "img/screenshots/image-resizer-2.jpg", "img/screenshots/image-resizer-3.jpg"],
+        images: ["img/screenshots/2.png", "img/screenshots/6.png"],
         fullDescription: "このツールを使用すると、フォルダ内の複数の画像を一括でリサイズすることができます。幅と高さを指定するか、比率を維持したままスケーリングするかを選択できます。また、出力形式やクオリティの設定も可能です。ウェブサイト用の画像の準備や、SNSへの投稿用画像の作成に最適です。",
         githubUrl: "https://github.com/username/image-resizer"
     },
@@ -24,7 +24,7 @@ let scriptsData = [
         title: "PDFマージツール",
         description: "複数のPDFファイルを1つのファイルに結合するシンプルなツールです。",
         thumbnail: "img/thumbnails/pdf-merger.jpg",
-        images: ["img/screenshots/pdf-merger-1.jpg", "img/screenshots/pdf-merger-2.jpg", "img/screenshots/pdf-merger-3.jpg", "img/screenshots/pdf-merger-4.jpg"],
+        images: ["img/screenshots/2.png", "img/screenshots/6.png"],
         fullDescription: "このスクリプトを使用すると、複数のPDFファイルを1つのドキュメントに簡単に結合することができます。ドラッグ＆ドロップインターフェースで使いやすく、ファイルの順序を自由に並べ替えることも可能です。パスワード保護されたPDFにも対応しており、結合後のファイルにもパスワード設定ができます。",
         githubUrl: "https://github.com/username/pdf-merger"
     }
@@ -85,6 +85,10 @@ function createImageGallery(images) {
     // サムネイルコンテナを取得
     const thumbnailContainer = document.getElementById('thumbnail-container');
     
+    // コンテナをクリア
+    mainImageContainer.innerHTML = '';
+    thumbnailContainer.innerHTML = '';
+    
     // 最初の画像をメイン画像として表示
     mainImageContainer.innerHTML = `<img src="${images[0]}" alt="スクリプトのスクリーンショット">`;
     
@@ -114,6 +118,9 @@ function createImageGallery(images) {
         
         thumbnailContainer.appendChild(thumbnail);
     });
+    
+    // デバッグ情報を表示
+    console.log('画像パス:', images);
 }
 
 // ローカルストレージからスクリプトデータを読み込む関数
