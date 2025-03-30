@@ -96,13 +96,19 @@ function handleFormSubmit(event) {
     const scriptId = document.getElementById('script-id').value;
     const title = document.getElementById('script-title').value;
     const description = document.getElementById('script-description').value;
-    const thumbnail = document.getElementById('script-thumbnail').value;
+    const thumbnailInput = document.getElementById('script-thumbnail').value;
     const imagesString = document.getElementById('script-images').value;
     const fullDescription = document.getElementById('script-full-description').value;
     const githubUrl = document.getElementById('script-github').value;
     
-    // 画像URLの配列を作成
-    const images = imagesString.split(',').map(url => url.trim());
+    // サムネイル画像のパスを自動的に追加
+    const thumbnail = thumbnailInput.startsWith('img/') ? thumbnailInput : `img/thumbnails/${thumbnailInput}`;
+    
+    // 画像URLの配列を作成し、パスを自動的に追加
+    const images = imagesString.split(',').map(url => {
+        url = url.trim();
+        return url.startsWith('img/') ? url : `img/screenshots/${url}`;
+    });
     
     // 新しいスクリプトデータを作成
     const newScript = {
@@ -199,8 +205,19 @@ function loadScriptForEditing(scriptId) {
         document.getElementById('script-id').value = script.id;
         document.getElementById('script-title').value = script.title;
         document.getElementById('script-description').value = script.description;
-        document.getElementById('script-thumbnail').value = script.thumbnail;
-        document.getElementById('script-images').value = script.images.join(', ');
+        
+        // サムネイルのパスからプレフィックスを削除
+        const thumbnailValue = script.thumbnail.startsWith('img/thumbnails/') 
+            ? script.thumbnail.replace('img/thumbnails/', '') 
+            : script.thumbnail;
+        document.getElementById('script-thumbnail').value = thumbnailValue;
+        
+        // 画像パスからプレフィックスを削除
+        const imagesValue = script.images.map(img => {
+            return img.startsWith('img/screenshots/') ? img.replace('img/screenshots/', '') : img;
+        }).join(', ');
+        document.getElementById('script-images').value = imagesValue;
+        
         document.getElementById('script-full-description').value = script.fullDescription;
         document.getElementById('script-github').value = script.githubUrl;
         
