@@ -15,7 +15,7 @@ let scriptsData = [
         title: "画像一括リサイズツール",
         description: "複数の画像を一度に指定したサイズにリサイズするスクリプトです。",
         thumbnail: "img/thumbnails/image-resizer.jpg",
-        images: ["img/screenshots/image-resizer-1.jpg", "img/screenshots/image-resizer-2.jpg"],
+        images: ["img/screenshots/image-resizer-1.jpg", "img/screenshots/image-resizer-2.jpg", "img/screenshots/image-resizer-3.jpg"],
         fullDescription: "このツールを使用すると、フォルダ内の複数の画像を一括でリサイズすることができます。幅と高さを指定するか、比率を維持したままスケーリングするかを選択できます。また、出力形式やクオリティの設定も可能です。ウェブサイト用の画像の準備や、SNSへの投稿用画像の作成に最適です。",
         githubUrl: "https://github.com/username/image-resizer"
     },
@@ -24,11 +24,14 @@ let scriptsData = [
         title: "PDFマージツール",
         description: "複数のPDFファイルを1つのファイルに結合するシンプルなツールです。",
         thumbnail: "img/thumbnails/pdf-merger.jpg",
-        images: ["img/screenshots/pdf-merger-1.jpg", "img/screenshots/pdf-merger-2.jpg"],
+        images: ["img/screenshots/pdf-merger-1.jpg", "img/screenshots/pdf-merger-2.jpg", "img/screenshots/pdf-merger-3.jpg", "img/screenshots/pdf-merger-4.jpg"],
         fullDescription: "このスクリプトを使用すると、複数のPDFファイルを1つのドキュメントに簡単に結合することができます。ドラッグ＆ドロップインターフェースで使いやすく、ファイルの順序を自由に並べ替えることも可能です。パスワード保護されたPDFにも対応しており、結合後のファイルにもパスワード設定ができます。",
         githubUrl: "https://github.com/username/pdf-merger"
     }
 ];
+
+// 現在表示中の画像インデックス
+let currentImageIndex = 0;
 
 // ページ読み込み時に実行
 document.addEventListener('DOMContentLoaded', function() {
@@ -55,21 +58,12 @@ function displayScriptDetail(scriptId) {
         document.title = `${script.title} - Tomimoto Hidetoshi`;
         document.getElementById('script-title').textContent = script.title;
         
-        // スクリプト詳細コンテンツを生成
-        const scriptContent = document.getElementById('script-content');
-        
         // 画像ギャラリーを生成
-        const imagesHTML = createImagesGallery(script.images);
+        createImageGallery(script.images);
         
-        // 詳細説明を追加
-        const descriptionHTML = `
-            <div class="script-description">
-                <p>${script.fullDescription}</p>
-            </div>
-        `;
-        
-        // コンテンツをHTMLに設定
-        scriptContent.innerHTML = imagesHTML + descriptionHTML;
+        // 説明文を設定
+        const descriptionElement = document.getElementById('script-description');
+        descriptionElement.innerHTML = `<p>${script.fullDescription}</p>`;
         
         // GitHubリポジトリへのリンクを設定
         const githubLink = document.getElementById('github-repo-link');
@@ -81,20 +75,45 @@ function displayScriptDetail(scriptId) {
 }
 
 // 画像ギャラリーを生成する関数
-function createImagesGallery(images) {
+function createImageGallery(images) {
     if (!images || images.length === 0) {
-        return '';
+        return;
     }
     
-    let imagesHTML = '<div class="script-images">';
+    // メイン画像コンテナを取得
+    const mainImageContainer = document.getElementById('main-image');
+    // サムネイルコンテナを取得
+    const thumbnailContainer = document.getElementById('thumbnail-container');
     
-    images.forEach(image => {
-        imagesHTML += `<img src="${image}" alt="スクリプトのスクリーンショット" class="script-image">`;
+    // 最初の画像をメイン画像として表示
+    mainImageContainer.innerHTML = `<img src="${images[0]}" alt="スクリプトのスクリーンショット">`;
+    
+    // サムネイル画像を生成
+    images.forEach((image, index) => {
+        const thumbnail = document.createElement('div');
+        thumbnail.className = `thumbnail ${index === 0 ? 'active' : ''}`;
+        thumbnail.innerHTML = `<img src="${image}" alt="サムネイル ${index + 1}">`;
+        
+        // サムネイルクリック時の処理
+        thumbnail.addEventListener('click', function() {
+            // 現在のアクティブなサムネイルを非アクティブにする
+            const activeThumbnail = thumbnailContainer.querySelector('.thumbnail.active');
+            if (activeThumbnail) {
+                activeThumbnail.classList.remove('active');
+            }
+            
+            // クリックされたサムネイルをアクティブにする
+            this.classList.add('active');
+            
+            // メイン画像を更新
+            mainImageContainer.innerHTML = `<img src="${image}" alt="スクリプトのスクリーンショット">`;
+            
+            // 現在の画像インデックスを更新
+            currentImageIndex = index;
+        });
+        
+        thumbnailContainer.appendChild(thumbnail);
     });
-    
-    imagesHTML += '</div>';
-    
-    return imagesHTML;
 }
 
 // ローカルストレージからスクリプトデータを読み込む関数
