@@ -60,7 +60,9 @@ function createScriptCard(script) {
     
     // カード内のHTMLを生成
     card.innerHTML = `
-        <img src="${script.thumbnail}" alt="${script.title}" class="script-card-img">
+        <div class="script-card-img-container">
+            <img src="${script.thumbnail}" alt="${script.title}" class="script-card-img">
+        </div>
         <div class="script-card-content">
             <h3 class="script-card-title">${script.title}</h3>
             <p class="script-card-description">${script.description}</p>
