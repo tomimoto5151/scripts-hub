@@ -239,6 +239,36 @@ body {
     flex-grow: 1;
 }
 
+.script-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.target-app-text {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.app-label {
+    font-size: 0.8rem;
+    color: var(--accent-green);
+    padding: 2px 6px;
+    border: 1px solid var(--accent-green);
+    border-radius: 3px;
+    transition: all 0.2s ease;
+}
+
+.app-label:hover {
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+.admin-app-text {
+    margin-right: 15px;
+}
+
 .script-card-link {
     display: inline-block;
     padding: 8px 15px;

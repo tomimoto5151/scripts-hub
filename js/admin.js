@@ -7,7 +7,8 @@ let scriptsData = [
         thumbnail: "img/thumbnails/file-organizer.jpg",
         images: ["img/screenshots/file-organizer-1.jpg", "img/screenshots/file-organizer-2.jpg"],
         fullDescription: "このスクリプトは、指定したフォルダ内のファイルを拡張子ごとに自動で分類し、整理します。画像、ドキュメント、音楽、動画などのカテゴリごとにサブフォルダを作成し、対応するファイルを移動させます。バッチ処理にも対応しており、大量のファイルも効率的に整理できます。",
-        githubUrl: "https://github.com/username/file-organizer"
+        githubUrl: "https://github.com/username/file-organizer",
+        targetApps: ["photoshop", "chrome"]
     },
     {
         id: "script2",
@@ -16,7 +17,8 @@ let scriptsData = [
         thumbnail: "img/thumbnails/image-resizer.jpg",
         images: ["img/screenshots/image-resizer-1.jpg", "img/screenshots/image-resizer-2.jpg"],
         fullDescription: "このツールを使用すると、フォルダ内の複数の画像を一括でリサイズすることができます。幅と高さを指定するか、比率を維持したままスケーリングするかを選択できます。また、出力形式やクオリティの設定も可能です。ウェブサイト用の画像の準備や、SNSへの投稿用画像の作成に最適です。",
-        githubUrl: "https://github.com/username/image-resizer"
+        githubUrl: "https://github.com/username/image-resizer",
+        targetApps: ["photoshop", "blender"]
     },
     {
         id: "script3",
@@ -25,8 +27,17 @@ let scriptsData = [
         thumbnail: "img/thumbnails/pdf-merger.jpg",
         images: ["img/screenshots/pdf-merger-1.jpg", "img/screenshots/pdf-merger-2.jpg"],
         fullDescription: "このスクリプトを使用すると、複数のPDFファイルを1つのドキュメントに簡単に結合することができます。ドラッグ＆ドロップインターフェースで使いやすく、ファイルの順序を自由に並べ替えることも可能です。パスワード保護されたPDFにも対応しており、結合後のファイルにもパスワード設定ができます。",
-        githubUrl: "https://github.com/username/pdf-merger"
+        githubUrl: "https://github.com/username/pdf-merger",
+        targetApps: ["chrome", "figma"]
     }
+];
+
+// 対象アプリの情報
+const targetApps = [
+    { id: "photoshop", name: "Photoshop", icon: "img/app-icons/photoshop.png" },
+    { id: "blender", name: "Blender", icon: "img/app-icons/blender.png" },
+    { id: "figma", name: "Figma", icon: "img/app-icons/figma.png" },
+    { id: "chrome", name: "Chrome", icon: "img/app-icons/chrome.png" }
 ];
 
 // 管理者パスワード
@@ -101,6 +112,10 @@ function handleFormSubmit(event) {
     const fullDescription = document.getElementById('script-full-description').value;
     const githubUrl = document.getElementById('script-github').value;
     
+    // 対象アプリの選択状態を取得
+    const targetAppCheckboxes = document.querySelectorAll('input[name="target-apps"]:checked');
+    const selectedApps = Array.from(targetAppCheckboxes).map(checkbox => checkbox.value);
+    
     // サムネイル画像のパスを自動的に追加
     const thumbnail = thumbnailInput.startsWith('img/') ? thumbnailInput : `img/thumbnails/${thumbnailInput}`;
     
@@ -118,7 +133,8 @@ function handleFormSubmit(event) {
         thumbnail: thumbnail,
         images: images,
         fullDescription: fullDescription,
-        githubUrl: githubUrl
+        githubUrl: githubUrl,
+        targetApps: selectedApps
     };
     
     // スクリプトを追加
@@ -126,6 +142,11 @@ function handleFormSubmit(event) {
     
     // フォームをリセット
     event.target.reset();
+    
+    // 対象アプリのチェックボックスをリセット
+    targetAppCheckboxes.forEach(checkbox => {
+        checkbox.checked = false;
+    });
     
     // 成功メッセージを表示
     alert('スクリプトが正常に追加されました！');
@@ -171,6 +192,19 @@ function displayExistingScripts() {
         const isFirst = index === 0;
         const isLast = index === scriptsData.length - 1;
         
+        // 対象アプリのテキストHTMLを生成
+        let appTextHtml = '';
+        if (script.targetApps && script.targetApps.length > 0) {
+            appTextHtml = '<div class="target-app-text admin-app-text">';
+            script.targetApps.forEach(appId => {
+                const app = targetApps.find(a => a.id === appId);
+                if (app) {
+                    appTextHtml += `<span class="app-label">${app.name}</span>`;
+                }
+            });
+            appTextHtml += '</div>';
+        }
+        
         scriptItem.innerHTML = `
             <div class="order-actions">
                 <button class="order-btn move-up" data-id="${script.id}" ${isFirst ? 'disabled' : ''}>
@@ -181,6 +215,7 @@ function displayExistingScripts() {
                 </button>
             </div>
             <div class="script-item-title">${script.title}</div>
+            ${appTextHtml}
             <div class="script-item-actions">
                 <button class="edit-btn" data-id="${script.id}"><i class="fas fa-edit"></i> 編集</button>
                 <button class="delete-btn" data-id="${script.id}"><i class="fas fa-trash"></i> 削除</button>
@@ -289,6 +324,11 @@ function loadScriptForEditing(scriptId) {
         
         document.getElementById('script-full-description').value = script.fullDescription;
         document.getElementById('script-github').value = script.githubUrl;
+        
+        // 対象アプリのチェックボックスを設定
+        document.querySelectorAll('input[name="target-apps"]').forEach(checkbox => {
+            checkbox.checked = script.targetApps && script.targetApps.includes(checkbox.value);
+        });
         
         // フォームにスクロール
         document.getElementById('add-script-form').scrollIntoView({ behavior: 'smooth' });
