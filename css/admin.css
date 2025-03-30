@@ -1,0 +1,130 @@
+/* Admin Page Styles */
+.admin-section {
+    background-color: var(--dark-surface);
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.admin-form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--accent-green);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #444;
+    background-color: var(--dark-card);
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-actions {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.submit-btn {
+    background-color: var(--accent-green);
+    color: var(--dark-bg);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: var(--accent-green-light);
+}
+
+/* Existing Scripts List */
+.existing-scripts {
+    margin-top: 20px;
+}
+
+.script-item {
+    background-color: var(--dark-card);
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.script-item-title {
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+.script-item-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.edit-btn,
+.delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.edit-btn {
+    color: var(--accent-green);
+}
+
+.edit-btn:hover {
+    background-color: rgba(76, 175, 80, 0.2);
+}
+
+.delete-btn {
+    color: #f44336;
+}
+
+.delete-btn:hover {
+    background-color: rgba(244, 67, 54, 0.2);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .admin-section {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .script-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .script-item-actions {
+        margin-top: 10px;
+    }
+}
