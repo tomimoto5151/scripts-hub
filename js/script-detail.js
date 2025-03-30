@@ -39,23 +39,30 @@ document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const scriptId = urlParams.get('id');
     
-    // スクリプトIDに対応するデータを表示
-    if (scriptId) {
-        displayScriptDetail(scriptId);
-    } else {
-        // IDが指定されていない場合はトップページにリダイレクト
-        window.location.href = 'index.html';
-    }
+    // ローカルストレージからデータを読み込む
+    loadScriptsFromStorage(scriptId);
 });
 
 // スクリプト詳細を表示する関数
 function displayScriptDetail(scriptId) {
+    if (!scriptId) {
+        // URLからスクリプトIDを取得（関数が直接呼び出された場合のフォールバック）
+        const urlParams = new URLSearchParams(window.location.search);
+        scriptId = urlParams.get('id');
+    }
+    
+    if (!scriptId) {
+        // IDが指定されていない場合はトップページにリダイレクト
+        window.location.href = 'index.html';
+        return;
+    }
+    
     // スクリプトIDに対応するデータを検索
     const script = scriptsData.find(s => s.id === scriptId);
     
     if (script) {
         // タイトルを設定
-        document.title = `${script.title} - Tomimoto Hidetoshi`;
+        document.title = `${script.title} - Scripts Hub`;
         document.getElementById('script-title').textContent = script.title;
         
         // 画像ギャラリーを生成
@@ -71,6 +78,7 @@ function displayScriptDetail(scriptId) {
         const githubLink = document.getElementById('github-repo-link');
         githubLink.href = script.githubUrl;
     } else {
+        console.error('指定されたIDのスクリプトが見つかりません:', scriptId);
         // スクリプトが見つからない場合はトップページにリダイレクト
         window.location.href = 'index.html';
     }
@@ -126,11 +134,12 @@ function createImageGallery(images) {
 }
 
 // ローカルストレージからスクリプトデータを読み込む関数
-function loadScriptsFromStorage() {
+function loadScriptsFromStorage(scriptId) {
     // まずローカルストレージから読み込む
     const storedData = localStorage.getItem('scriptsData');
     if (storedData) {
         scriptsData = JSON.parse(storedData);
+        displayScriptDetail(scriptId);
         return;
     }
     
@@ -145,14 +154,11 @@ function loadScriptsFromStorage() {
         .then(data => {
             scriptsData = data;
             // 読み込んだデータを表示
-            displayScriptDetail();
+            displayScriptDetail(scriptId);
         })
         .catch(error => {
             console.error('データの読み込みエラー:', error);
             // エラーの場合はデフォルトデータを使用
-            displayScriptDetail();
+            displayScriptDetail(scriptId);
         });
 }
-
-// 初期化時にローカルストレージからデータを読み込む
-loadScriptsFromStorage();
