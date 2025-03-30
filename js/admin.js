@@ -352,13 +352,57 @@ function deleteScript(scriptId) {
 
 // ローカルストレージにスクリプトデータを保存する関数
 function saveScriptsToStorage() {
+    // ローカルストレージに保存
     localStorage.setItem('scriptsData', JSON.stringify(scriptsData));
+    
+    // JSONファイルとしてダウンロードできるようにする
+    const dataStr = JSON.stringify(scriptsData, null, 2);
+    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+    const dataUrl = URL.createObjectURL(dataBlob);
+    
+    // ダウンロードリンクを作成して自動的にクリック
+    const downloadArea = document.createElement('div');
+    downloadArea.innerHTML = `
+        <div class="download-json-notification">
+            <p>データが更新されました。以下のリンクからJSONファイルをダウンロードして、「data/scripts.json」として保存し、GitHubにアップロードしてください。</p>
+            <a href="${dataUrl}" download="scripts.json" class="download-json-btn">JSONファイルをダウンロード</a>
+        </div>
+    `;
+    
+    // 既存の通知があれば削除
+    const existingNotification = document.querySelector('.download-json-notification');
+    if (existingNotification) {
+        existingNotification.parentNode.removeChild(existingNotification);
+    }
+    
+    // 通知を追加
+    document.querySelector('.admin-section').appendChild(downloadArea);
 }
 
-// ローカルストレージからスクリプトデータを読み込む関数
+// データを読み込む関数
 function loadScriptsFromStorage() {
+    // まずローカルストレージから読み込む
     const storedData = localStorage.getItem('scriptsData');
     if (storedData) {
         scriptsData = JSON.parse(storedData);
+        return;
     }
+    
+    // ローカルストレージにデータがない場合は、JSONファイルから読み込む
+    fetch('data/scripts.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('JSONファイルの読み込みに失敗しました');
+            }
+            return response.json();
+        })
+        .then(data => {
+            scriptsData = data;
+            // 読み込んだデータを表示
+            displayExistingScripts();
+        })
+        .catch(error => {
+            console.error('データの読み込みエラー:', error);
+            // エラーの場合はデフォルトデータを使用
+        });
 }

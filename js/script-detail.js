@@ -127,10 +127,31 @@ function createImageGallery(images) {
 
 // ローカルストレージからスクリプトデータを読み込む関数
 function loadScriptsFromStorage() {
+    // まずローカルストレージから読み込む
     const storedData = localStorage.getItem('scriptsData');
     if (storedData) {
         scriptsData = JSON.parse(storedData);
+        return;
     }
+    
+    // ローカルストレージにデータがない場合は、JSONファイルから読み込む
+    fetch('data/scripts.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('JSONファイルの読み込みに失敗しました');
+            }
+            return response.json();
+        })
+        .then(data => {
+            scriptsData = data;
+            // 読み込んだデータを表示
+            displayScriptDetail();
+        })
+        .catch(error => {
+            console.error('データの読み込みエラー:', error);
+            // エラーの場合はデフォルトデータを使用
+            displayScriptDetail();
+        });
 }
 
 // 初期化時にローカルストレージからデータを読み込む
