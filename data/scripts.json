@@ -32,10 +32,9 @@
     "id": "image-to-artboard-generator",
     "title": "Image to Artboard Generator",
     "description": "複数の画像をアートボードとして自動的に配置し、元の画像のサイズを維持して効率的なレイアウトを実現するプロフェッショナルな Photoshop ツールです。",
-    "thumbnail": "img/thumbnails/2.png",
+    "thumbnail": "img/thumbnails/tm-image-to-artboard-generator.jpg",
     "images": [
-      "img/screenshots/6.png",
-      "img/screenshots/2.png"
+      "img/screenshots/tm-image-to-artboard-generator.jpg"
     ],
     "fullDescription": "複数の画像をアートボードとして自動的に配置し、元の画像のサイズを維持して効率的なレイアウトを実現するプロフェッショナルな Photoshop ツールです。\n📐 複数の画像を一度にインポートする\n🔄 オリジナルの画像サイズでアートボードを作成する\n🏷️ レイヤー名は画像ファイル名から継承されます\n📝 アートボード名は画像のファイル名と拡張子を保持します\n📊 10000pxで縦に並べた画像を折り返します",
     "githubUrl": "https://github.com/tomimoto5151/image-to-artboard-generator",
@@ -47,10 +46,9 @@
     "id": "middle-button-drag-scroll",
     "title": "Middle Button Drag Scroll",
     "description": "Mac 版 Chrome に中央ボタンのドラッグスクロール機能を追加します。直感的なスクロールコントロールでブラウジング体験が向上します。",
-    "thumbnail": "img/thumbnails/2.png",
+    "thumbnail": "img/thumbnails/tm-middle-button-drag-scroll.jpg",
     "images": [
-      "img/screenshots/6.png",
-      "img/screenshots/2.png"
+      "img/screenshots/tm-middle-button-drag-scroll.jpg"
     ],
     "fullDescription": "🖱️ 中ボタンドラッグスクロール\n🔧 スクロール速度調整\n🔁 スクロール方向の反転",
     "githubUrl": "https://github.com/tomimoto5151/middle-button-drag-scroll",
