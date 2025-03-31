@@ -188,11 +188,117 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .script-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 
+        0 10px 20px rgba(0, 0, 0, 0.3),
+        0 0 0 2px var(--accent-green),
+        0 0 15px rgba(76, 175, 80, 0.5),
+        0 0 30px rgba(76, 175, 80, 0.3);
+    animation: cardPulse 1.5s infinite;
+}
+
+.script-card:hover::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: linear-gradient(45deg, 
+        #4CAF50, #2196F3, #00BCD4, #4CAF50, 
+        #8BC34A, #CDDC39, #4CAF50);
+    background-size: 400% 400%;
+    z-index: -1;
+    filter: blur(5px);
+    border-radius: 12px;
+    animation: glowingBorder 3s ease infinite;
+    opacity: 0.7;
+}
+
+.script-card:hover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(125deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0) 40%, 
+        rgba(255, 255, 255, 0.4) 50%, 
+        rgba(255, 255, 255, 0) 60%, 
+        transparent 100%);
+    background-size: 200% 100%;
+    border-radius: 10px;
+    animation: shimmerEffect 2s infinite;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+@keyframes glowingBorder {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes shimmerEffect {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+@keyframes cardPulse {
+    0% {
+        box-shadow: 
+            0 10px 20px rgba(0, 0, 0, 0.3),
+            0 0 0 2px var(--accent-green),
+            0 0 15px rgba(76, 175, 80, 0.5),
+            0 0 30px rgba(76, 175, 80, 0.3);
+    }
+    50% {
+        box-shadow: 
+            0 10px 25px rgba(0, 0, 0, 0.4),
+            0 0 0 2px var(--accent-green),
+            0 0 20px rgba(76, 175, 80, 0.7),
+            0 0 40px rgba(76, 175, 80, 0.5);
+    }
+    100% {
+        box-shadow: 
+            0 10px 20px rgba(0, 0, 0, 0.3),
+            0 0 0 2px var(--accent-green),
+            0 0 15px rgba(76, 175, 80, 0.5),
+            0 0 30px rgba(76, 175, 80, 0.3);
+    }
+}
+
+.script-card-content, .script-card-img-container {
+    position: relative;
+    z-index: 2;
+}
+
+.script-card:hover .script-card-content {
+    background-color: rgba(37, 37, 37, 0.9);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.script-card:hover .script-card-title {
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.script-card:hover .script-card-description {
+    color: var(--text-primary);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .script-card-img-container {
