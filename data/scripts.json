@@ -2,13 +2,13 @@
   {
     "id": "transform-panel",
     "title": "Transform Panel",
-    "description": "位置、回転、スケール、寸法を正確に調整するための3D制作アプリスタイルの変形コントロールを提供するPhotoshop用のツールです。",
+    "description": "位置、回転、スケール、寸法を正確に調整するためのBlenderスタイルのトランスフォームを提供するUXPプラグインです",
     "thumbnail": "img/thumbnails/tm-transform-panel.jpg",
     "images": [
-      "img/screenshots/tm-transform-panel.jpg",
+      "img/screenshots/s01-transform-panel.jpg",
       "img/screenshots/tm-transform-panel.jpg"
     ],
-    "fullDescription": "📐 3D アーティストに馴染みのある完全な変換コントロール (移動、回転、拡大縮小、寸法の調整)\n🔒 繰り返し実行のために以前の値をロックする\n👥 複数のオブジェクトに同時に変換を適用する\n📏 ボーナス機能: 参照座標でレイヤーを整理する\n🇯🇵 日本語のみのサポート",
+    "fullDescription": "主な機能\n📐 3Dアーティストに馴染みのある完全なトランスフォーム\n🔒 繰り返し実行のための値をロック機能\n👥 複数のオブジェクトに同時にトランスフォーム\n📏 ボーナス機能→参照座標でレイヤーを整理",
     "githubUrl": "https://github.com/tomimoto5151/transform-panel",
     "targetApps": [
       "photoshop"
@@ -20,6 +20,7 @@
     "description": "同じディレクトリ内の「scripts」フォルダからスクリプトを一覧表示して実行する、Photoshop 用のシンプルなスクリプト ランチャーです。",
     "thumbnail": "img/thumbnails/tm-script-launcher.jpg",
     "images": [
+      "img/screenshots/s01-script-launcher.jpg",
       "img/screenshots/tm-script-launcher.jpg"
     ],
     "fullDescription": "📋 「scripts」フォルダ内のすべてのスクリプトを一覧表示します\n▶️ ワンクリックでスクリプトを実行\n📁 「scripts」フォルダが存在しない場合は自動的に作成します\n🔄 シンプルでクリーンなユーザーインターフェース",
@@ -34,6 +35,7 @@
     "description": "複数の画像をアートボードとして自動的に配置し、元の画像のサイズを維持して効率的なレイアウトを実現するプロフェッショナルな Photoshop ツールです。",
     "thumbnail": "img/thumbnails/tm-image-to-artboard-generator.jpg",
     "images": [
+      "img/screenshots/s01-image-to-artboard-generator.jpg",
       "img/screenshots/tm-image-to-artboard-generator.jpg"
     ],
     "fullDescription": "複数の画像をアートボードとして自動的に配置し、元の画像のサイズを維持して効率的なレイアウトを実現するプロフェッショナルな Photoshop ツールです。\n📐 複数の画像を一度にインポートする\n🔄 オリジナルの画像サイズでアートボードを作成する\n🏷️ レイヤー名は画像ファイル名から継承されます\n📝 アートボード名は画像のファイル名と拡張子を保持します\n📊 10000pxで縦に並べた画像を折り返します",
@@ -48,6 +50,7 @@
     "description": "Mac 版 Chrome に中央ボタンのドラッグスクロール機能を追加します。直感的なスクロールコントロールでブラウジング体験が向上します。",
     "thumbnail": "img/thumbnails/tm-middle-button-drag-scroll.jpg",
     "images": [
+      "img/screenshots/s01-middle-button-drag-scroll.jpg",
       "img/screenshots/tm-middle-button-drag-scroll.jpg"
     ],
     "fullDescription": "🖱️ 中ボタンドラッグスクロール\n🔧 スクロール速度調整\n🔁 スクロール方向の反転",
