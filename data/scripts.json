@@ -2,13 +2,13 @@
   {
     "id": "transform-panel",
     "title": "Transform Panel",
-    "description": "位置、回転、スケール、寸法を正確に調整するためのBlenderスタイルのトランスフォームを提供するUXPプラグインです",
+    "description": "位置、回転、スケール、寸法を数値ベースで素早くトランスフォームできるUXPプラグインです",
     "thumbnail": "img/thumbnails/tm-transform-panel.jpg",
     "images": [
       "img/screenshots/s01-transform-panel.jpg",
       "img/screenshots/tm-transform-panel.jpg"
     ],
-    "fullDescription": "主な機能\n📐 3Dアーティストに馴染みのある完全なトランスフォーム\n🔒 繰り返し実行のための値をロック機能\n👥 複数のオブジェクトに同時にトランスフォーム\n📏 ボーナス機能→参照座標でレイヤーを整理",
+    "fullDescription": "位置、回転、スケール、寸法を数値ベースで素早くトランスフォームできるUXPプラグインです\n簡単にインストール出来てパネルとして常駐できます\n\n主な機能\n・3Dアーティストに馴染みのある座標トランスフォーム\n・繰り返し実行のための値をロック機能搭載\n・複数のオブジェクトに同時にトランスフォームを実行\n・ボーナス機能→参照座標でレイヤーを整理",
     "githubUrl": "https://github.com/tomimoto5151/transform-panel",
     "targetApps": [
       "photoshop"
@@ -17,13 +17,13 @@
   {
     "id": "ps-script-launcher",
     "title": "PS Script Launcher",
-    "description": "同じディレクトリ内の「scripts」フォルダからスクリプトを一覧表示して実行する、Photoshop 用のシンプルなスクリプト ランチャーです。",
+    "description": "同階層にあるscriptsフォルダ内に配置したスクリプトをリストアップして実行できます",
     "thumbnail": "img/thumbnails/tm-script-launcher.jpg",
     "images": [
       "img/screenshots/s01-script-launcher.jpg",
       "img/screenshots/tm-script-launcher.jpg"
     ],
-    "fullDescription": "📋 「scripts」フォルダ内のすべてのスクリプトを一覧表示します\n▶️ ワンクリックでスクリプトを実行\n📁 「scripts」フォルダが存在しない場合は自動的に作成します\n🔄 シンプルでクリーンなユーザーインターフェース",
+    "fullDescription": "同階層にあるscriptsフォルダ内に配置したスクリプトをリストアップして実行できます\n\n主な機能\n・「scripts」フォルダ内のすべてのスクリプトを一覧表示します\n・一覧から直接スクリプトを実行できます\n・「scripts」フォルダが存在しない場合は自動的に作成します",
     "githubUrl": "https://github.com/tomimoto5151/ps-script-launcher",
     "targetApps": [
       "photoshop"
@@ -32,13 +32,13 @@
   {
     "id": "image-to-artboard-generator",
     "title": "Image to Artboard Generator",
-    "description": "複数の画像をアートボードとして自動的に配置し、元の画像のサイズを維持して効率的なレイアウトを実現するプロフェッショナルな Photoshop ツールです。",
+    "description": "複数画像をアートボードとして自動的に配置し、ファイル名と拡張子を元にした自動リネームを実行するスクリプトです",
     "thumbnail": "img/thumbnails/tm-image-to-artboard-generator.jpg",
     "images": [
       "img/screenshots/s01-image-to-artboard-generator.jpg",
       "img/screenshots/tm-image-to-artboard-generator.jpg"
     ],
-    "fullDescription": "複数の画像をアートボードとして自動的に配置し、元の画像のサイズを維持して効率的なレイアウトを実現するプロフェッショナルな Photoshop ツールです。\n📐 複数の画像を一度にインポートする\n🔄 オリジナルの画像サイズでアートボードを作成する\n🏷️ レイヤー名は画像ファイル名から継承されます\n📝 アートボード名は画像のファイル名と拡張子を保持します\n📊 10000pxで縦に並べた画像を折り返します",
+    "fullDescription": "複数画像をアートボードとして自動的に配置し、ファイル名と拡張子を元にした自動リネームを実行するスクリプトです\n\n主な機能\n・複数の画像を一度にインポート\n・オリジナルの解像度を維持してアートボードを作成\n・ファイル名と拡張子を元にアートボードをリネーム\n・レイヤー名からは拡張子を除去\n・10000px到達で2列目に折り返し",
     "githubUrl": "https://github.com/tomimoto5151/image-to-artboard-generator",
     "targetApps": [
       "photoshop"
@@ -47,13 +47,13 @@
   {
     "id": "middle-button-drag-scroll",
     "title": "Middle Button Drag Scroll",
-    "description": "Mac 版 Chrome に中央ボタンのドラッグスクロール機能を追加します。直感的なスクロールコントロールでブラウジング体験が向上します。",
+    "description": "Mac版Chromeに中ボタンのドラッグスクロール機能を追加、直感的なブラウジングを実現するChrome拡張機能です",
     "thumbnail": "img/thumbnails/tm-middle-button-drag-scroll.jpg",
     "images": [
       "img/screenshots/s01-middle-button-drag-scroll.jpg",
       "img/screenshots/tm-middle-button-drag-scroll.jpg"
     ],
-    "fullDescription": "🖱️ 中ボタンドラッグスクロール\n🔧 スクロール速度調整\n🔁 スクロール方向の反転",
+    "fullDescription": "Mac版Chromeに中ボタンのドラッグスクロール機能を追加、直感的なブラウジングを実現するChrome拡張機能です\n\n主な機能\n・中ボタンドラッグスクロール\n・スクロールのスピード調整\n・ドラッグの感度調整\n・スクロール方向の反転機能",
     "githubUrl": "https://github.com/tomimoto5151/middle-button-drag-scroll",
     "targetApps": [
       "chrome"
